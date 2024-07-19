@@ -1,0 +1,7 @@
+
+train: craters/train/images/
+val: craters/valid/images/
+test: craters/test/images/
+
+nc: 1  # number of classes
+names: ['class_0']  # class names

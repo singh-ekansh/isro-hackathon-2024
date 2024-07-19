@@ -1,0 +1,19 @@
+Freezing layer 'model.22.dfl.conv.weight'
+[34m[1mtrain: [39m[22mNew cache created: C:\Users\Asus\Desktop\i\react-crypto-app-master\react-crypto-app-master\isro-hackathon-2024\dataset-lunar\craters\train\labels.cache
+[34m[1mtrain: [39m[22mScanning C:\Users\Asus\Desktop\i\react-crypto-app-master\react-crypto-app-master\isro-hackathon-2024\dataset-lunar\craters\train\labels... 98 images, 9 backgrounds, 0 corrupt: 100%|██████████| 98/98 [00:00<00:00, 1488.84it/s]
+[34m[1mval: [39m[22mScanning C:\Users\Asus\Desktop\i\react-crypto-app-master\react-crypto-app-master\isro-hackathon-2024\dataset-lunar\craters\valid\labels... 26 images, 2 backgrounds, 0 corrupt: 100%|██████████| 26/26 [00:00<00:00, 501.33it/s]
+[34m[1malbumentations: [39m[22mBlur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01), CLAHE(p=0.01, clip_limit=(1, 4.0), tile_grid_size=(8, 8))
+[34m[1mval: [39m[22mNew cache created: C:\Users\Asus\Desktop\i\react-crypto-app-master\react-crypto-app-master\isro-hackathon-2024\dataset-lunar\craters\valid\labels.cache
+Plotting labels to runs\detect\train13\labels.jpg...
+[34m[1moptimizer:[39m[22m 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically...
+[34m[1moptimizer:[39m[22m AdamW(lr=0.002, momentum=0.9) with parameter groups 57 weight(decay=0.0), 64 weight(decay=0.0005), 63 bias(decay=0.0)
+  0%|          | 0/7 [00:00<?, ?it/s]
+[34m[1mTensorBoard: [39m[22mmodel graph visualization added
+Image sizes 640 train, 640 val
+Using 0 dataloader workers
+Logging results to [1mruns\detect\train13
+Starting training for 50 epochs...
+
+
+
+
