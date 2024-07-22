@@ -1,9 +1,49 @@
 import streamlit as st
 import tensorflow as tf
 import numpy as np
+import base64
 
+st.set_page_config(
+    page_title="Crater Detection",
+    page_icon="🔭",
+    layout="centered"
+)
 
-# Tensorflow Model Prediction
+# Custom CSS to set the background image and font colors
+def add_bg_from_local(image_path):
+    with open(image_path, "rb") as image_file:
+        bg_image = image_file.read()
+        b64_image = base64.b64encode(bg_image).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{b64_image}");
+            background-size: cover;
+            color: white;
+        }}
+        h1, h2, h3, h4, h5, h6 {{
+            color: white;
+        }}
+        .css-1d391kg {{
+            color: black;
+        }}
+        /* Apply to the sidebar and its elements */
+        .css-1d391kg {{
+            color: black; /* Sidebar title */
+        }}
+        .css-1d391kg .css-1v3fvcr {{
+            color: black; /* Sidebar text */
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Your main code here
+add_bg_from_local('static/bg-image.jpeg')
+
+# TensorFlow Model Prediction
 def model_prediction(test_image):
     model = tf.keras.models.load_model('lunar-crater.keras')
     image = tf.keras.preprocessing.image.load_img(test_image, target_size=(128, 128))
@@ -18,8 +58,6 @@ app_mode = st.sidebar.selectbox("Select Page", ["Home", "About", "Lunar Crater D
 
 if app_mode == "Home":
     st.header("Lunar Crater Detection System")
-    image_path = "lunar.jpeg"
-    st.image(image_path, use_column_width=True)
     st.markdown("""
     Welcome to our Lunar Crater Detection System! 🌕🔭
 
@@ -70,4 +108,3 @@ elif app_mode == "Lunar Crater Detection":
         result_index = model_prediction(test_image)
         class_name = ['Crater', 'Not Crater']
         st.success(f"According to our Model, it is a {class_name[result_index]}.")
-
