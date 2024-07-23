@@ -2,6 +2,8 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 import base64
+from PIL import Image
+import os
 
 st.set_page_config(
     page_title="Crater Detection",
@@ -45,10 +47,21 @@ add_bg_from_local('static/bg-image.jpeg')
 
 # TensorFlow Model Prediction
 def model_prediction(test_image):
-    model = tf.keras.models.load_model('lunar-crater.keras')
-    image = tf.keras.preprocessing.image.load_img(test_image, target_size=(128, 128))
+    model_path = 'lunar-crater.h5'
+    if not os.path.exists(model_path):
+        st.error(f"Model file not found: {model_path}")
+        return None
+
+    try:
+        model = tf.keras.models.load_model(model_path)
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        return None
+
+    image = Image.open(test_image)
+    image = image.resize((128, 128))
     input_arr = tf.keras.preprocessing.image.img_to_array(image)
-    input_arr = np.array([input_arr])
+    input_arr = np.array([input_arr])  # Add batch dimension
     prediction = model.predict(input_arr)
     result_index = np.argmax(prediction)
     return result_index
@@ -101,10 +114,12 @@ elif app_mode == "About":
 elif app_mode == "Lunar Crater Detection":
     st.header("Lunar Crater Recognition🌑")
     test_image = st.file_uploader("Upload an Image:")
-    if st.button("Show Image"):
-        st.image(test_image, use_column_width=True)
-    if st.button("Predict"):
-        st.write("Our Prediction")
-        result_index = model_prediction(test_image)
-        class_name = ['Crater', 'Not Crater']
-        st.success(f"According to our Model, it is a {class_name[result_index]}.")
+    if test_image is not None:
+        if st.button("Show Image"):
+            st.image(test_image, use_column_width=True)
+        if st.button("Predict"):
+            st.write("Our Prediction")
+            result_index = model_prediction(test_image)
+            if result_index is not None:
+                class_name = ['Crater', 'Not Crater']
+                st.success(f"According to our Model, it is a {class_name[result_index]}.")
