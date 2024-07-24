@@ -43,7 +43,7 @@ def add_bg_from_local(image_path):
     )
 
 # Your main code here
-add_bg_from_local('static/bg-image.jpeg')
+add_bg_from_local('static/bg-image.jpg')
 
 # TensorFlow Model Prediction
 def model_prediction(test_image):
