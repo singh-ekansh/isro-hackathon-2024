@@ -46,22 +46,11 @@ def add_bg_from_local(image_path):
 add_bg_from_local('static/bg-image.jpg')
 
 # TensorFlow Model Prediction
-def model_prediction(test_image):
-    model_path = 'lunar-crater.h5'
-    if not os.path.exists(model_path):
-        st.error(f"Model file not found: {model_path}")
-        return None
-
-    try:
-        model = tf.keras.models.load_model(model_path)
-    except Exception as e:
-        st.error(f"Error loading model: {e}")
-        return None
-
-    image = Image.open(test_image)
-    image = image.resize((128, 128))
+def model_prediction(image):
+    model = tf.keras.models.load_model('lunar-crater.keras')
+    image = tf.keras.preprocessing.image.load_img(image, target_size=(128, 128))
     input_arr = tf.keras.preprocessing.image.img_to_array(image)
-    input_arr = np.array([input_arr])  # Add batch dimension
+    input_arr = np.array([input_arr])
     prediction = model.predict(input_arr)
     result_index = np.argmax(prediction)
     return result_index
