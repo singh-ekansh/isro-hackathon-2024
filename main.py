@@ -72,7 +72,7 @@ app_mode = st.sidebar.selectbox("Select Page", ["Home", "About", "Lunar Crater D
 if app_mode == "Home":
     st.header("Lunar Crater Detection System")
     st.markdown("""
-    Welcome to our Lunar Crater Detection System! 🌕🔭
+    Welcome to our Lunar Crater Detection System by TEAM Starks 🌕🔭
 
     Our mission is to help you identify lunar craters efficiently. Please upload an image of the lunar surface, and our system will analyze it to detect any signs of craters. Together, let's explore the moon and enhance our understanding of its topography!
 
@@ -108,7 +108,18 @@ elif app_mode == "About":
     Trained YOLOv5 model file: For each new version, we will upload our pretrained YOLOv5 model file using the latest version of data. The network strcture currently in use is YOLOv5m6.
     
     #### Link to Dataset
-    Link: https://www.kaggle.com/datasets/lincolnzh/martianlunar-crater-detection-dataset
+    1. LRO WAC global mosaic (100m), June 2013 version cane be download from USGS website.
+    2. Chandrayaan-2 TMC Nadir images cane downloaded from https://chmapbrowse.issdc.gov.in
+    3. From “CH2_TMC_Calibrated_Product” instrument footprints, user can select PDS product id which contains “ch2_tmc_ncn_*” should be downloaded and used.
+    
+    ### About Team
+    We are a group of Undergrad Students pursuing Bachelor of Engineering from Thapar Institute of Engineering and Technology, Patiala, Punjab
+    #### Group Details:
+    * Balbir Singh Bhatia https://www.linkedin.com/in/balbirsinghbhatia/
+    * Anant Sharma https://www.linkedin.com/in/anant-sharma-505126237/
+    * Ekansh Singh https://www.linkedin.com/in/ekanshsinghin/
+    
+    
     """)
 
 elif app_mode == "Lunar Crater Detection":
